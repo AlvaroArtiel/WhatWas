@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  padding: 10%;
+  margin-top: 10%;
+  background-color: bisque;
+  
+  -webkit-backdrop-filter: blur();
+}
