@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300..700&display=swap');
+</style>
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
