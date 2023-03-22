@@ -32,7 +32,7 @@ const Formulario = () => {
   return (
     <>
       <Card className="cardForm" color="transparent">
-          <CardTitle className="cardClaim" tag="h5">¡Busca tu canción preferida!</CardTitle>
+          <CardTitle className="cardClaim" tag="h5">¡Vamos a encontrar el título!</CardTitle>
             <Form>
                 <Col md={12}>
                   <FormGroup>

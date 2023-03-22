@@ -7,8 +7,7 @@ const App = () => {
       <div className="container">
         <h1 className="mainTitle">Bienvenido a WhatWas</h1>
         <h3 className="mainInfo">
-          La mejor herramienta para encontrar esa canción o película que no
-          recuerdas
+          La mejor herramienta para encontrar esa canción o grupo que no recuerdas
         </h3>
       </div>
       <div className="formContainer">

@@ -7,13 +7,14 @@ const PopUp = ({mensajeAlerta, modal, setModal}) => {
   
     return (
         <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>¡Alerta!</ModalHeader>
+          <ModalHeader toggle={toggle}>Aquí tienes tu respuesta</ModalHeader>
           <ModalBody>
-            {mensajeAlerta}
+            {/* {mensajeAlerta} */}
+            Aquí irá la respuesta de ChatGPT: que contiene el nombre de la canción y el artista o grupo con una breve descripción.
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={toggle}>
-              Cerrar
+            <Button color="primary" onClick={toggle}>
+              Copiar
             </Button>
           </ModalFooter>
         </Modal>
