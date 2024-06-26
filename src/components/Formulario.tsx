@@ -1,39 +1,37 @@
-import React from "react";
+import React, { Dispatch } from "react";
+import { useRef, useState, useEffect } from "react";
+import { fetchAPI } from '../redux/actions/SearcherAction'
+import { useTypedDispatch, useTypedSelector } from '../redux/store'
+import { State, FetchState } from "../interfaces/ReduxInterfaces";
+
+import { Button, Form, Col, FormGroup, Label, Input, Card, CardTitle } from "reactstrap";
 import PopUp from "../modal/PopUp";
-import { useRef, useState } from "react";
-import {
-  Button,
-  Form,
-  Row,
-  Col,
-  FormGroup,
-  Label,
-  Input,
-  Card,
-  CardBody,
-  CardText,
-  CardTitle,
-} from "reactstrap";
 
 const Formulario = () => {
-  const [modal, setModal] = useState(false);
-  const [mensaje, setMensaje] = useState("");
+  const dispatch = useTypedDispatch();
+  const searcher = useTypedSelector((state: State): FetchState => state.searcher);
+  const [modal, setModal] = useState<boolean>(false);
+  const [keyword, setKeyword] = useState<string>('');
   const inputRef = useRef(null);
 
-  const guardarTexto = (e) => {
-    setMensaje(e.target.value);
+  /* Aux. Functions */
+  const guardarTexto = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value);
   };
 
-  const mostrarTexto = (e) => {
-    setModal(!modal);
-    //setMensaje("");
+  const mostrarTexto = (): void => {
+    (async () => {
+      await dispatch(fetchAPI(keyword.toLowerCase()));
+      setModal(!modal);
+    })();
+    
   };
 
   return (
     <>
       <Card className="cardForm" color="transparent">
           <CardTitle className="cardClaim" tag="h5">¡Vamos a encontrar el título!</CardTitle>
-            <Form>
+            <Form onSubmit={()=> mostrarTexto()}>
                 <Col md={12}>
                   <FormGroup>
                     <Label className="cardInfo" for="lyricsForm">
@@ -43,7 +41,7 @@ const Formulario = () => {
                     <Input
                       ref={inputRef}
                       onChange={guardarTexto}
-                      value={mensaje}
+                      value={keyword}
                       id="lyricsForm"
                       name="lyrics"
                       placeholder="Escribe aquí la letra"
@@ -56,7 +54,7 @@ const Formulario = () => {
               </Button>
             </Form>
       </Card>
-      <PopUp mensajeAlerta={mensaje} setModal={setModal} modal={modal} />
+      <PopUp dataResponse={searcher} setModal={setModal} modal={modal} />
     </>
   );
 };
